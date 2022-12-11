@@ -68,11 +68,13 @@ GETTING STARTED
              2 | 2 2 *
             0(0+1)*
 
-8. To reproduce results from the paper:
+8.  The following commands run L* with Blanks on the benchmarks mentioned in the
+    paper (in csv format: the -f option). Time estimates are for a laptop with a
+    1.4 GHz Intel Core i5 with 8GB RAM running docker on MacOS (Monterey).
 
     Abridged version of Figure-6 (should take 10min):
 
-        $ ../reproduce-abridged.sh
+        $ ../scripts/reproduce-abridged.sh
 
     Small example of separating regular expressions in section 8 (end of page 21) (will take <1 second):
 
@@ -82,15 +84,16 @@ GETTING STARTED
 
         $ dune exec nerodelearn -- lsblanks-dir -s -ge -f ../benchmarks/table-1
 
-    Data for Figure 6(a):
+    Data for Figure 6(a) (should take 45 min and 5-6 hours, respectively):
 
         $ dune exec nerodelearn -- lsblanks-dir -ge -f ../benchmarks/oliveira/04_09
         $ dune exec nerodelearn -- lsblanks-dir -s -ge -f ../benchmarks/oliveira/04_09
 
     Data for Figure 6(b) (may take more than a day):
+
         $ dune exec nerodelearn -- lsblanks-dir -s -ge -f ../benchmarks/oliveira/04_11
 
     Everything in the paper, all in one go (may take a more than a day):
 
-        $ ../reproduce-everything.sh
+        $ ../scripts/reproduce-everything.sh
 
