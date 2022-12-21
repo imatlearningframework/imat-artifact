@@ -20,11 +20,30 @@ GETTING STARTED
         $ docker load < imat-artifact-image.tar.gz
         $ docker run -it imat/base
 
-6. There are two top-level components:
-    * A library of automata manipulation modules, called `nerode`.
-    * A library of automata learning algorithms (including the main result of
-      the paper), called `nerode-learn`. The docker image starts out in the
-      nerode-learn directory.
+6. The docker image is built on the [opam docker image](https://hub.docker.com/r/ocaml/opam) for
+   OCaml 4.14 and is laid out as follows:
+    * All of the OCaml source code is in `/home/opam/imat-source`.
+    * There is a library of automata manipulation modules in `/home/opam/imat-sorce/nerode`.
+    * There is a library of automata learning algorithms in `/home/opam/imat-source/nerode-learn`.
+      The docker image starts out in the nerode-learn directory (as all the
+      scripts are designed to be run from here). Note in particular that the
+      main algorithm from the paper, L* with Blanks, is implemented in
+      `/home/opam/imat-source/nerode-learn/lib/lstarblanks.ml`.  The
+      implementation of the observation table data structure (described in the
+      early part of section 8) is in
+      `/home/opam/imat-source/nerode-learn/lib/obsTbl.ml`.
+    * An auxiliary library for interacting with the Z3 SMT solver is
+      provided in `/home/opam/imat-source/ocaml-z3`.
+    * Benchmark sets are provided in `/home/opam/imat-source/benchmarks`.
+      The benchmarks in the subdirectory `oliveira` are due to
+      [Oliveira and Silva](https://ieeexplore.ieee.org/document/712986) and
+      those in `lee_alpharegex` are due [Lee, So, and Oh](https://dl.acm.org/doi/10.1145/2993236.2993244).
+    * Finally we provide bash scripts for reproducing the various experiments in
+      section 9 of the paper in `/home/opam/imat-source/scripts`. In particular,
+      `/home/opam/imat-source/scripts/reproduce-abridged.sh` and
+      `/home/opam/imat-source/scripts/reproduce-everything.sh` make a new
+      directory, `/home/opam/imat-source/output`, and produce CSV files into
+      that directory with the corresponding data.
 
 7. Once the docker has started, a very simple command to verify that things are
    working:
